@@ -3,8 +3,8 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    # build every Sunday
-    - cron: "0 0 * * 0"
+    # build on every 15th of the month
+    - cron: "0 0 15 * *"
 
 jobs:
   build:
