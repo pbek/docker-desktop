@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  # https://github.com/pbek/docker-desktop
+  desktop:
+    image: pbeke/docker-desktop
+    restart: unless-stopped
+    volumes:
+      - desktop-home:/home
+    environment:
+      - USER=demo
+      - PASSWORD=demo
+      - TZ=Europe/Vienna
+    ports:
+      - 6080:80
+
+volumes:
+  desktop-home:
