@@ -30,7 +30,7 @@ RUN sudo apt -y install qownnotes fish nextcloud-client less mc htop git qtcreat
 # install Rambox
 RUN cd /tmp && wget https://github.com/ramboxapp/community-edition/releases/download/0.7.7/Rambox-0.7.7-linux-amd64.deb && sudo dpkg -i Rambox-0.7.7-linux-amd64.deb || sudo apt install -fy
 # install smartgit
-RUN cd /tmp && wget https://www.syntevo.com/downloads/smartgit/smartgit-20_2_1.deb && sudo dpkg -i smartgit-20_2_1.deb || sudo apt install -fy
+#RUN cd /tmp && wget https://www.syntevo.com/downloads/smartgit/smartgit-20_2_1.deb && sudo dpkg -i smartgit-20_2_1.deb || sudo apt install -fy
 # disable Chromium sandbox so it will Electron will run in the container
 RUN sudo sed -i 's/rambox %U/rambox --no-sandbox %U/g' /usr/share/applications/rambox.desktop
 
