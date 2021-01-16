@@ -19,8 +19,8 @@ RUN sudo apt -y install dirmngr
 RUN sudo add-apt-repository -y ppa:pbek/qownnotes
 RUN sudo add-apt-repository -y ppa:fish-shell/release-3
 RUN sudo add-apt-repository -y ppa:nextcloud-devs/client
-# for smartgithg, but currently no focal support
-#RUN sudo add-apt-repository -y ppa:eugenesan/ppa
+# for smartgithg
+RUN sudo add-apt-repository -y ppa:eugenesan/ppa
 RUN sudo add-apt-repository -y ppa:phoerious/keepassxc
 RUN sudo add-apt-repository -y ppa:peek-developers/stable
 
