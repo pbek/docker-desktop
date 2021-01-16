@@ -15,4 +15,4 @@ services:
       - 6080:80
 
 volumes:
-  - desktop-home:
+  desktop-home:
