@@ -27,7 +27,7 @@ RUN sudo add-apt-repository -y ppa:phoerious/keepassxc
 RUN sudo add-apt-repository -y ppa:peek-developers/stable
 
 RUN sudo apt -y upgrade
-RUN sudo apt -y install qownnotes fish nextcloud-client less mc htop git qtcreator qt5-default g++ qttools5-dev build-essential qtdeclarative5-dev libqt5svg5-dev qttools5-dev-tools libqt5xmlpatterns5-dev libqt5websockets5-dev libqt5x11extras5-dev keepassxc vim telnet nmap inetutils-ping peek xscreensaver synaptic signal-desktop
+RUN sudo apt -y install qownnotes fish nextcloud-client less mc htop git qtcreator qt5-default g++ qttools5-dev build-essential qtdeclarative5-dev libqt5svg5-dev qttools5-dev-tools libqt5xmlpatterns5-dev libqt5websockets5-dev libqt5x11extras5-dev keepassxc vim telnet nmap inetutils-ping peek xscreensaver synaptic signal-desktop netcat
 
 # install Rambox
 RUN cd /tmp && wget https://github.com/ramboxapp/community-edition/releases/download/0.7.7/Rambox-0.7.7-linux-amd64.deb && sudo dpkg -i Rambox-0.7.7-linux-amd64.deb || sudo apt install -fy
