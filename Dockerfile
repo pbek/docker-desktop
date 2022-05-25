@@ -27,7 +27,7 @@ RUN sudo add-apt-repository -y ppa:phoerious/keepassxc
 RUN sudo add-apt-repository -y ppa:peek-developers/stable
 
 RUN sudo apt -y upgrade
-RUN sudo apt -y install qownnotes fish nextcloud-client less mc htop git qtcreator qt5-default g++ qttools5-dev build-essential qtdeclarative5-dev libqt5svg5-dev qttools5-dev-tools libqt5xmlpatterns5-dev libqt5websockets5-dev libqt5x11extras5-dev keepassxc vim telnet nmap inetutils-ping peek xscreensaver synaptic signal-desktop netcat owncloud-client
+RUN sudo apt -y install qownnotes fish nextcloud-client less mc htop git qtcreator qt5-default g++ qttools5-dev build-essential qtdeclarative5-dev libqt5svg5-dev qttools5-dev-tools libqt5xmlpatterns5-dev libqt5websockets5-dev libqt5x11extras5-dev keepassxc vim telnet nmap inetutils-ping peek xscreensaver synaptic signal-desktop netcat owncloud-client jq curl
 
 # install Rambox
 RUN cd /tmp && wget https://github.com/ramboxapp/community-edition/releases/download/0.7.7/Rambox-0.7.7-linux-amd64.deb && sudo dpkg -i Rambox-0.7.7-linux-amd64.deb || sudo apt install -fy
@@ -39,6 +39,16 @@ RUN cd /tmp && wget https://www.syntevo.com/downloads/smartgit/smartgit-20_2_2.d
 
 # install GitHub Hub
 RUN cd /usr && curl -fsSL https://github.com/github/hub/raw/master/script/get | sudo bash -s 2.14.2
+
+# change permissions /usr/local/bin
+RUN sudo chown omega /usr/local/bin
+
+# install qc
+RUN curl https://api.github.com/repos/qownnotes/qc/releases/latest | jq '.assets[] | select(.browser_download_url | endswith("_linux_amd64.tar.gz")) | .browser_download_url' | xargs curl -Lo /tmp/qc.tar.gz && tar xfz /tmp/qc.tar.gz -C /tmp && rm /tmp/qc.tar.gz && sudo mv /tmp/qc /usr/local/bin/qc
+
+# install ferdium
+RUN curl https://api.github.com/repos/ferdium/ferdium-app/releases | jq  'map(select(.prerelease)) | first | .assets[] | select(.browser_download_url | endswith(".AppImage")) | .browser_download_url' | xargs curl -Lo /tmp/ferdium && sudo mv /tmp/ferdium /usr/local/bin/ferdium && sudo chmod a+x /usr/local/bin/ferdium && ls -al /usr/local/bin/ferdium
+
 
 #RUN sudo snap install clion
 
