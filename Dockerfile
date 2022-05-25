@@ -41,7 +41,7 @@ RUN cd /tmp && wget https://www.syntevo.com/downloads/smartgit/smartgit-20_2_2.d
 RUN cd /usr && curl -fsSL https://github.com/github/hub/raw/master/script/get | sudo bash -s 2.14.2
 
 # change permissions /usr/local/bin
-RUN sudo chown omega /usr/local/bin
+RUN sudo chown 1000 /usr/local/bin && sudo chown 1000 /usr/local/bin -R
 
 # install qc
 RUN curl https://api.github.com/repos/qownnotes/qc/releases/latest | jq '.assets[] | select(.browser_download_url | endswith("_linux_amd64.tar.gz")) | .browser_download_url' | xargs curl -Lo /tmp/qc.tar.gz && tar xfz /tmp/qc.tar.gz -C /tmp && rm /tmp/qc.tar.gz && sudo mv /tmp/qc /usr/local/bin/qc
