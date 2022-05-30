@@ -47,7 +47,9 @@ RUN sudo chown 1000 /usr/local/bin && sudo chown 1000 /usr/local/bin -R
 RUN curl https://api.github.com/repos/qownnotes/qc/releases/latest | jq '.assets[] | select(.browser_download_url | endswith("_linux_amd64.tar.gz")) | .browser_download_url' | xargs curl -Lo /tmp/qc.tar.gz && tar xfz /tmp/qc.tar.gz -C /tmp && rm /tmp/qc.tar.gz && sudo mv /tmp/qc /usr/local/bin/qc
 
 # install ferdium
-RUN curl https://api.github.com/repos/ferdium/ferdium-app/releases | jq  'map(select(.prerelease)) | first | .assets[] | select(.browser_download_url | endswith(".AppImage")) | .browser_download_url' | xargs curl -Lo /tmp/ferdium && sudo mv /tmp/ferdium /usr/local/bin/ferdium && sudo chmod a+x /usr/local/bin/ferdium && ls -al /usr/local/bin/ferdium
+RUN curl https://api.github.com/repos/ferdium/ferdium-app/releases | jq  'map(select(.prerelease)) | first | .assets[] | select(.browser_download_url | endswith("amd64.deb")) | .browser_download_url' | xargs curl -Lo /tmp/ferdium.deb && sudo dpkg --install /tmp/ferdium.deb && sudo rm /tmp/ferdium.deb
+# disable Chromium sandbox so it will Electron will run in the container
+RUN sudo sed -i 's/ferdium %U/ferdium --no-sandbox %U/g' /usr/share/applications/ferdium.desktop
 
 
 #RUN sudo snap install clion
