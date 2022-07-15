@@ -9,6 +9,8 @@ FROM dorowu/ubuntu-desktop-lxde-vnc
 COPY init.sh /usr/local/bin/
 
 RUN sudo sed -i 's|http://tw.|http://de.|g' /etc/apt/sources.list
+# temporarily remove unsigned google chrome repo
+RUN sudo rm /etc/apt/sources.list.d/google-chrome.list
 RUN sudo apt update
 RUN sudo apt -y install dirmngr
 
