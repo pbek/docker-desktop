@@ -2,9 +2,9 @@ name: Build and Deploy Container
 on:
   push:
   workflow_dispatch:
-  schedule:
-    # build on every 15th of the month
-    - cron: "0 0 15 * *"
+#  schedule:
+#    # build on every 15th of the month
+#    - cron: "0 0 15 * *"
 
 jobs:
   build:
